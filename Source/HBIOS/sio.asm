@@ -281,3 +281,4 @@ serBBufUsed	.DB	00h
 
 serAInMask      .EQU     serAInPtr&$FF
 serBInMask      .EQU     serBInPtr&$FF
+
