@@ -895,3 +895,31 @@ ST32:
 	LD	(BC),A
 	POP	AF
 	RET
+
+;VFD_C   .EQU    0
+;VFD_D   .EQU    1
+
+VFD_PREINIT:
+        LD      A, $30
+        OUT     (VFD_C), A
+        LD      A, 0
+        OUT     (VFD_D), A
+        LD      A, 1
+        OUT     (VFD_C), A
+        LD      A, $0F
+        OUT     (VFD_C), A
+        LD      A, 'D'
+        OUT     (VFD_D), A
+        LD      A, '>'
+        OUT     (VFD_D), A
+        RET
+
+VPRTCH:
+	EX	(SP),HL
+	PUSH	AF
+	LD	A,(HL)
+	OUT     (VFD_D), A
+	POP	AF
+	INC	HL
+	EX	(SP),HL
+	RET
