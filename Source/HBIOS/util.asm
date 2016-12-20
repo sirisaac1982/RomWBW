@@ -896,8 +896,8 @@ ST32:
 	POP	AF
 	RET
 
-;VFD_C   .EQU    0
-;VFD_D   .EQU    1
+VFD_C   .EQU    0
+VFD_D   .EQU    1
 
 VFD_PREINIT:
         LD      A, $30

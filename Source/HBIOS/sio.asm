@@ -14,12 +14,10 @@ SIOB_C		.EQU	SIOA_D+3 ;$03
 SIO_IV          .EQU    2
 
 SIO_PREINIT:
-        VPRTC_NC('M')
         LD      DE,SIO_CFG_A
 	LD	BC,SIO_DISPATCH	; BC := DISPATCH ADDRESS
 	CALL	CIO_ADDENT
 
-        VPRTC_NC('N')
 ;	Initialise SIO
 		LD	A,$00
 		OUT	(SIOA_C),A
@@ -94,8 +92,6 @@ SIO_PREINIT:
 ;		IM	2
 ;		EI				; Enable interrupts
 
-                VPRTC_NC('O')
-
                 RET
 
 SIO_DISPATCH:
@@ -129,8 +125,6 @@ SIO_INIT:
 ; ISR
 
 SIO_INT_HDLR:
-                VPRTC_NC('Q')
-
 		; Check if there is a char in channel A
 		; If not, there is a char in channel B
 		SUB	A
