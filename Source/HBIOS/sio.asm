@@ -221,7 +221,11 @@ rtsA1:
 ; output character to port A
 
 SIO_OUT_A:
-conoutA1:	CALL	SIO_OST_A	; See if SIO channel A is finished transmitting
+conoutA1:
+#IF (VFDTERMENABLE)
+                CALL    VFDTERM_PUTC
+#ENDIF
+                CALL	SIO_OST_A	; See if SIO channel A is finished transmitting
 		JR	Z,conoutA1	; Loop until SIO flag signals ready
                 LD      A, E            ; char to output is in E
 		OUT	(SIOA_D),A	; OUTput the character

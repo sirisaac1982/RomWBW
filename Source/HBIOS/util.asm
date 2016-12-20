@@ -896,8 +896,12 @@ ST32:
 	POP	AF
 	RET
 
-VFD_C   .EQU    0
-VFD_D   .EQU    1
+; ----------------------------------------------------------------------------
+; VFD Debugging, for when you broke things so bad even serial doesn't work
+; ----------------------------------------------------------------------------
+
+VFD_C   .EQU    0     ; control register
+VFD_D   .EQU    1     ; data register
 
 VFD_PREINIT:
         LD      A, $30
