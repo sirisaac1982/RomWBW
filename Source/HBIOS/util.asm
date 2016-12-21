@@ -912,8 +912,6 @@ VFD_PREINIT:
         OUT     (VFD_C), A
         LD      A, $0F
         OUT     (VFD_C), A
-        LD      A, 'D'
-        OUT     (VFD_D), A
         LD      A, '>'
         OUT     (VFD_D), A
         RET
