@@ -808,7 +808,6 @@ FD_WRITE:
 	JR	FD_RUN
 ;
 FD_FORMAT:
-	LD	(FD_DSKBUF),HL		; SAVE DISK BUFFER ADDRESS
 	LD	A,DOP_FORMAT
 	JR	FD_RUN
 ;
@@ -1628,7 +1627,7 @@ FXRW4:	LD	A,(HL)			; GET NEXT BYTE TO WRITE
 	LD	A,D	
 	OR	E	
 	JR	NZ,FXRW2		; IF NOT ZERO, REPEAT LOOP
-	JR	FXR_END			; CLEAN EXIT
+	JP	FXR_END			; CLEAN EXIT
 FXRW5:					; OUTER LOOP, REALLY ONLY HAPPENS WHEN WAITING FOR FIRST BYTE OR ABORTED
 	CP	0C0H			; IF RQM=1, DIO=1, NDM=0 (EXECUTION ABORTED)
 	JR	Z,FXR_ABORT		; BAIL OUT TO ERR ROUTINE
@@ -1653,11 +1652,10 @@ FXR_ABORT:
 ;
 FXR_FMTTRK:
 	HB_DI				; TIME CRITICAL , INTERRUPTS WILL CAUSE I/O ERRS
-	LD	HL,(FD_DSKBUF)		; POINT TO SECTOR BUFFER START
 
-        LD      DE, (FCD_SC)
-        SLA     E                       ; multiply by 4
-        SLA     E
+        LD      DE, (FCD_SC)            ; Setup loop counter.
+        SLA     E                       ; Multiply sector count by 4, because each sector
+        SLA     E                       ; needs us to6 write 4 bytes
 
 	; TIMEOUT COUNTER IS CPU MHZ / 4 (MAKING SURE IT IS AT LEAST 1)
 ;	LD	A,(CPUMHZ + 3) / 4
@@ -1675,9 +1673,32 @@ FXFT3:	IN	A,(FDC_MSR)		; GET MSR
 	DJNZ	FXFT3			; NOT READY, LOOP IF COUNTER NOT ZERO
 	JR	FXFT5			; COUNTER ZERO, GO TO OUTER LOOP LOGIC
 
-FXFT4:	IN	A,(FDC_DATA)		; GET PENDING BYTE
-	LD	(HL),A			; STORE IT IN BUFFER
-	INC	HL			; INCREMENT THE BUFFER POINTER
+        ; For each sector, format requires that we write out C, H, R, and N.
+        ; Three of these (C,H,N) are fixed. R is the sector number, which should
+        ; start at zero.
+
+FXFT4:  LD      A, E
+        AND     $03
+        CP      0                       ; should we write C ?
+        JR      NZ, notC
+        LD      A, (FCD_C)
+        JR      FXFTW
+notC:   CP      3                       ; should we write H ?
+        JR      NZ, notH
+        LD      A, (FCD_R)
+        JR      FXFTW
+notH:   CP      2                       ; should we write R ?
+        JR      NZ, notR
+        LD      A, (FCD_SC)             ; A = ((FCD_SC*4) - E) / 4
+        SLA     A
+        SLA     A
+        SUB     E
+        SRA     A
+        SRA     A
+        JR      FXFTW
+notR:   LD      A, (FCD_N)              ; it must be N that we should write
+FXFTW:  OUT	(FDC_DATA),A
+
 	DEC	DE			; DECREMENT BYTE COUNT
 	LD	A,D
 	OR	E
