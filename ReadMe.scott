@@ -4,8 +4,10 @@ The 8inch drives as received were configured:
    842 - cut X, Z, HL; short C
 
 Reconfigured for me:
-   842 - cut B, HL; short C, DS-near-j2 
-            (option 2 of head load)
+   842 - cut B, HL; short C 
+            head load from pin 18
+            stepper motor always energized
+            (short DS-near-J2 to only energize stepper motor on drive select)
 
 Modifications to 34-50 adapter
    route NC6 to HL
