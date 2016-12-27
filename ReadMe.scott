@@ -2,12 +2,17 @@ Scott's Notes
 
 The 8inch drives as received were configured:
    842 - cut X, Z, HL; short C
+            head load from pin 18 and drive select
+            stepper motor always energized
 
-Reconfigured for me:
+Use this configuration for WD37C65 special mode:
    842 - cut B, HL; short C 
             head load from pin 18
             stepper motor always energized
             (short DS-near-J2 to only energize stepper motor on drive select)
+   Note: WD37C65 special mode polls drive readiness by asserting DS
+         about 1000 times per second. If head load or stepper is 
+         drive by DS, then they will sing. 
 
 Modifications to 34-50 adapter
    route NC6 to HL
