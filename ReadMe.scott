@@ -1,0 +1,14 @@
+Scott's Notes
+
+The 8inch drives as received were configured:
+   842 - cut X, Z, HL; short C
+
+Reconfigured for me:
+   842 - cut B, HL; short C, DS-near-j2 
+            (option 2 of head load)
+
+Modifications to 34-50 adapter
+   route NC6 to HL
+
+Modifications to floppy controller
+   route HL to NC6
