@@ -4,6 +4,9 @@ The 8inch drives as received were configured:
    842 - cut X, Z, HL; short C
             head load from pin 18 and drive select
             stepper motor always energized
+   DT/8 - same as the 842, but with Y also shorted
+            this drives the inuse LED from head load
+            suspect the Y jumper was missing on the 842
 
 Use this configuration for WD37C65 special mode:
    842 - cut B, HL; short C 
