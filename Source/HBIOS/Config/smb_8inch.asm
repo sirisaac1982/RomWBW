@@ -4,4 +4,4 @@ FDMEDIA         .EQU    FDM111          ; FDM720, FDM144, FDM360, FDM120 (ONLY R
 FDMEDIAALT      .EQU    FDM111          ; ALTERNATE MEDIA TO TRY, SAME CHOICES AS ABOVE (ONLY RELEVANT IF FDMAUTO = TRUE)
 FDMAUTO         .EQU    FALSE           ; SELECT BETWEEN MEDIA OPTS ABOVE AUTOMATICALLY
 
-FDSPECIAL       .EQU    FALSE; TRUE            ; Use special mode instead oF AT/ESA mode
+FDSPECIAL       .EQU    FALSE            ; Use special mode instead oF AT/ESA mode
