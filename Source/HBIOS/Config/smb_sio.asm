@@ -4,3 +4,5 @@ FDMEDIAALT      .EQU    FDM720          ; ALTERNATE MEDIA TO TRY, SAME CHOICES A
 FDMAUTO         .EQU    TRUE            ; SELECT BETWEEN MEDIA OPTS ABOVE AUTOMATICALLY
 
 FDSPECIAL       .EQU    FALSE           ; Use special mode instead oF AT/ESA mode
+
+VFDTERMENABLE   .EQU    FALSE	; No VFD Terminal
