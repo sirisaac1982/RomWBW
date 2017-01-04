@@ -36,7 +36,13 @@ ZSYSIMG	.EQU	$5000
 	.FILL	(030H - $),0FFH		; RST 30
 	RET
 	.FILL	(038H - $),0FFH		; INT
-	RETI
+#IF (ACIAENABLE)
+        PUSH    HL
+        LD      HL, ($FF02)
+        JP      (HL)
+#ELSE
+        RETI
+#ENDIF
 	.FILL	(066H - $),0FFH		; NMI
 	RETN
 ;

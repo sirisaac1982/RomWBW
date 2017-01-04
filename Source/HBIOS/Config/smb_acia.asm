@@ -5,8 +5,8 @@ FDMAUTO         .EQU    TRUE            ; SELECT BETWEEN MEDIA OPTS ABOVE AUTOMA
 
 FDSPECIAL       .EQU    FALSE           ; Use special mode instead oF AT/ESA mode
 
-VFDTERMENABLE   .EQU    FALSE	; No VFD Terminal
+VFDTERMENABLE   .EQU    FALSE	        ; Enable VFD Terminal
 
-ACIAENABLE      .EQU    FALSE            ; Z80 ACIA Enable
-SIOENABLE       .EQU    TRUE            ; Z80 SIO/2 Enable
-INTTYPE         .EQU    IT_Z80IM2       ; INTERRUPT HANDLING TYPE (IT_NONE, IT_SIMH, IT_Z180, IT_CTC, ...)
+SIOENABLE       .EQU    FALSE           ; Z80 SIO/2 Disable
+ACIAENABLE      .EQU    TRUE            ; Z80 ACIA Enable
+INTTYPE         .EQU    IT_Z80IM1       ; INTERRUPT HANDLING TYPE (IT_NONE, IT_SIMH, IT_Z180, IT_CTC, ...)

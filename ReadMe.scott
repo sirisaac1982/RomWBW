@@ -1,5 +1,17 @@
 Scott's Notes
 
+Just random stuff from my RC2014 build...
+
+Configurations
+
+   smb_sio - RC2014 with SIO board
+   smb_sio_vfd - RC2014 with SIO board and VFD board
+   smb_sio_vfd_8in - RC2014 with SIO board, VFD board, and 8inch floppy
+   smb_acia - RC2014 with ACIA board (original RC2014 serial board)
+   smb_acia_vfd - RC2014 with ACIA board and VFD board
+
+8" floppy notes
+
 The 8inch drives as received were configured:
    842 - cut X, Z, HL; short C
             head load from pin 18 and drive select
