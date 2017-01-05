@@ -1,15 +1,18 @@
 ; -----------------------------------------------------------------------------
-; Z80 SIO/2 Driver
+; Z80 68B50 ACIA Driver
 ;
-; Based on Grant Searle's CPM BIOS
+; Based on Grant Searle's Basic
 ;
-; Implements two serial ports for one SIO/2 chip. Uses Z80 IM2 and has an
+; Implements one serial port for one 68B50 ACIA chip. Uses Z80 IM1 and has an
 ; interrupt handler to buffer incoming characters.
 ;
 ; NOTE: If VFDTERMENABLE is set, then VFD will mirror the output on port A
 ;
-; TODO: Probably should combine the separate code for ports A and B, and use
-;       a single dispatch table.
+;       Since we have to use IM1, we have to place the interrupt vector at $38.
+;       This causes some grief when RomWBW loads the romldr, since the romldr
+;       has $38 hardcoded in ROM. So what I did is to have the 38H interrupt
+;       handler fetch the address at $FF02 (interrupt vector #2) and jump
+;       there.
 ; -----------------------------------------------------------------------------
 
 SER_BUFSIZE	.EQU	150
@@ -47,10 +50,9 @@ ACIA_PREINIT:
         LD	HL, INT_ACIA           ; Install ACIA interrupt handler
         LD	(HBX_IVT + ACIA_IV),HL
 
-;		IM	1
-;		EI				; Enable interrupts
+        ; interrupt mode 1 will be selected, and interrupts enabled by HBIOS
 
-                RET
+        RET
 
 ACIA_DISPATCH_A
 	; DISPATCH TO FUNCTION HANDLER
@@ -200,7 +202,7 @@ ACIA_QUERY:
 	RET				; DONE
 
 ACIA_DEVICE:
-	LD	D,CIODEV_SIO	; D := DEVICE TYPE
+	LD	D,CIODEV_ACIA	; D := DEVICE TYPE
 	LD	E,(IY)		; E := PHYSICAL UNIT
 	XOR	A		; SIGNAL SUCCESS
 	RET
