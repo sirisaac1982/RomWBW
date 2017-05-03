@@ -8,6 +8,8 @@ FDSPECIAL       .EQU    FALSE            ; Use special mode instead oF AT/ESA mo
 
 VFDTERMENABLE   .EQU    TRUE	; Enable VFD Terminal
 
+ASCIENABLE      .EQU    FALSE           ; TRUE FOR Z180 ASCI SUPPORT
+
 ACIAENABLE      .EQU    FALSE            ; Z80 ACIA Enable
 SIOENABLE       .EQU    TRUE            ; Z80 SIO/2 Enable
 INTTYPE         .EQU    IT_Z80IM2       ; INTERRUPT HANDLING TYPE (IT_NONE, IT_SIMH, IT_Z180, IT_CTC, ...)

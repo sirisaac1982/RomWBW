@@ -1,4 +1,5 @@
 ; SMB with SIO/2 and VFD
+CPUOSC          .EQU    20000000         ; CPU OSC FREQ
 
 FDMEDIA         .EQU    FDM144          ; FDM720, FDM144, FDM360, FDM120 (ONLY RELEVANT IF FDENABLE = TRUE)
 FDMEDIAALT      .EQU    FDM720          ; ALTERNATE MEDIA TO TRY, SAME CHOICES AS ABOVE (ONLY RELEVANT IF FDMAUTO = TRUE)
@@ -8,8 +9,13 @@ FDSPECIAL       .EQU    FALSE           ; Use special mode instead oF AT/ESA mod
 
 VFDTERMENABLE   .EQU    TRUE	; Enable VFD Terminal
 
+SMB_Z180        .EQU    TRUE
+Z180_BASE       .EQU    $C0
+
 ASCIENABLE      .EQU    FALSE           ; TRUE FOR Z180 ASCI SUPPORT
 
 ACIAENABLE      .EQU    FALSE            ; Z80 ACIA Enable
 SIOENABLE       .EQU    TRUE            ; Z80 SIO/2 Enable
 INTTYPE         .EQU    IT_Z80IM2       ; INTERRUPT HANDLING TYPE (IT_NONE, IT_SIMH, IT_Z180, IT_CTC, ...)
+
+#INCLUDE "z180.inc"
