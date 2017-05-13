@@ -7,6 +7,7 @@ FDMAUTO         .EQU    TRUE            ; SELECT BETWEEN MEDIA OPTS ABOVE AUTOMA
 
 FDSPECIAL       .EQU    FALSE           ; Use special mode instead oF AT/ESA mode
 
+SMB_Z180        .EQU    FALSE
 VFDTERMENABLE   .EQU    TRUE	        ; Enable VFD Terminal
 
 ASCIENABLE      .EQU    FALSE           ; TRUE FOR Z180 ASCI SUPPORT

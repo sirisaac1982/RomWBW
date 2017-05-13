@@ -9,6 +9,7 @@ FDSPECIAL       .EQU    FALSE           ; Use special mode instead oF AT/ESA mod
 
 VFDTERMENABLE   .EQU    FALSE	        ; Enable VFD Terminal
 
+SMB_Z180        .EQU    FALSE
 ASCIENABLE      .EQU    FALSE           ; TRUE FOR Z180 ASCI SUPPORT
 
 SIOENABLE       .EQU    FALSE           ; Z80 SIO/2 Disable

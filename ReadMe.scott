@@ -9,6 +9,8 @@ Configurations
    smb_sio_vfd_8in - RC2014 with SIO board, VFD board, and 8inch floppy
    smb_acia - RC2014 with ACIA board (original RC2014 serial board)
    smb_acia_vfd - RC2014 with ACIA board and VFD board
+   smb_z180_asci_vfd - RC2014 with Z180 CPU using built-in ASCI (better be 18.432 Mhz crystal!)
+   smb_z180_sio_vfd - RC2104 with Z180 CPU using SIO/2 board, install separate crystal in SIO/2 board
 
 8" floppy notes
 
