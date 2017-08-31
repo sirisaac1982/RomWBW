@@ -1,4 +1,5 @@
 ; SMB sv8 - Sio, vfd, 8inch
+CPUOSC          .EQU    7372800         ; CPU OSC FREQ
 
 FDMEDIA         .EQU    FDM111          ; FDM720, FDM144, FDM360, FDM120 (ONLY RELEVANT IF FDENABLE = TRUE)
 FDMEDIAALT      .EQU    FDM111          ; ALTERNATE MEDIA TO TRY, SAME CHOICES AS ABOVE (ONLY RELEVANT IF FDMAUTO = TRUE)
@@ -7,6 +8,9 @@ FDMAUTO         .EQU    FALSE           ; SELECT BETWEEN MEDIA OPTS ABOVE AUTOMA
 FDSPECIAL       .EQU    FALSE            ; Use special mode instead oF AT/ESA mode
 
 VFDTERMENABLE   .EQU    TRUE	; Enable VFD Terminal
+
+SMB_Z180        .EQU    FALSE
+ASCIENABLE      .EQU    FALSE           ; TRUE FOR Z180 ASCI SUPPORT
 
 ACIAENABLE      .EQU    FALSE            ; Z80 ACIA Enable
 SIOENABLE       .EQU    TRUE            ; Z80 SIO/2 Enable

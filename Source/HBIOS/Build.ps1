@@ -27,6 +27,10 @@ while ($true)
 
 if (($Platform -eq "N8") -or ($Platform -eq "MK4")) {$CPUType = "180"} else {$CPUType = "80"}
 
+# for smb_z180_sio_vfd, force cpu to z180
+if (${Config} -eq "z180_sio_vfd") {$CPUType = "180"}
+if (${Config} -eq "z180_asci_vfd") {$CPUType = "180"}
+
 if ($RomName -eq "") {$RomName = "${Platform}_${Config}"}
 while ($RomName -eq "")
 {
